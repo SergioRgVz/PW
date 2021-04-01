@@ -43,3 +43,12 @@ TD.izquierda {font-size: 10pt; text-align: left; background: #FFFFFF;}
 .error {
     color: red;
 }
+
+a{
+    color: #1d1d1d;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
