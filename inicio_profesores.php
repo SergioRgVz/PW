@@ -16,7 +16,7 @@
             session_start();
             $conexion = mysqli_connect("localhost", "root", "", "examenes_online");
             $dni = $_SESSION["DNIe"];
-            $instruccion = "SELECT * FROM asignatura WHERE ID_Asignatura IN (SELECT ID_Asignatura FROM coordina WHERE DNIe='$dni')";
+            $instruccion = "SELECT * FROM asignatura WHERE DNIe_Coordinador='$dni'";
             $consulta = mysqli_query($conexion, $instruccion);
 
             $nfilas = mysqli_num_rows($consulta);

@@ -39,3 +39,7 @@ TH {font-size: 10pt; font-weight: bold; color: white; background: #000000;; text
 TD {font-size: 10pt; background: #ffffff;}
 TD.derecha {font-size: 10pt; text-align: right; background: #FFFFFF;}
 TD.izquierda {font-size: 10pt; text-align: left; background: #FFFFFF;}
+
+.error {
+    color: red;
+}
