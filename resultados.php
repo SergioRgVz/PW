@@ -25,7 +25,7 @@
         <TABLE>
         <TR>
         <TH>DNI</TH>
-        <TH>Nombre y apellidos</TH>
+        <TH>Nombre</TH>
         <TH>Calificación</TH>
         </TR>
         <?php
@@ -45,29 +45,52 @@
     $instruccion = "SELECT * FROM asignatura WHERE ID_Asignatura='$asignatura'";
     $consulta = mysqli_query($conexion, $instruccion);
 
-    $nfilas = mysqli_num_rows($consulta);
-    if ($nfilas > 0)
+    $fila = mysqli_fetch_array($consulta);
+
+    $nota_media = $fila['Nota_media'];
+
+    //Calcular la nota media si no está ya almacenada
+    if($nota_media == "")
     {
-        ?>
-        <BR><TABLE>
-        <TR>
-        <TH>Aprobados</TH>
-        <TH>Notables</TH>
-        <TH>Sobresalientes</TH>
-        </TR>
-        <?php
+        $num_alumnos = $fila['N_suspensos'] + $fila['N_aprobados'] + $fila['N_notables'] + $fila['N_sobresalientes'];
+
+        $suma = 0;
+        $instruccion = "select Nota_final from matricula where ID_Asignatura='$asignatura'";
+        $consulta = mysqli_query($conexion, $instruccion);
+        $nfilas = mysqli_num_rows($consulta);
+
         for ($i=0; $i<$nfilas; $i++)
         {
-            $fila = mysqli_fetch_array($consulta);
-            ?>
-            <TR>
-            <TD><?= $fila['N_aprobados'] ?></TD>
-            <TD><?= $fila['N_notables'] ?></TD>
-            <TD><?= $fila['N_sobresalientes'] ?></TD>
-            </TR>
-        <?php } ?>
-        </TABLE>
-        <?php }
+            $nota = mysqli_fetch_array($consulta);
+            $suma += $nota['Nota_final'];
+        }
+
+        $nota_media =  $suma / $num_alumnos;
+        $instruccion = "UPDATE asignatura SET Nota_media = $nota_media WHERE asignatura.ID_Asignatura = $asignatura";
+        $consulta = mysqli_query($conexion, $instruccion)
+            or die ("Fallo en la modificacion");
+    }
+
+    ?>
+    <BR><TABLE>
+    <TR>
+    <TH>Suspensos</TH>
+    <TH>Aprobados</TH>
+    <TH>Notables</TH>
+    <TH>Sobresalientes</TH>
+    <TH>Nota media</TH>
+    </TR>
+
+    <TR>
+    <TD><?= $fila['N_suspensos'] ?></TD>
+    <TD><?= $fila['N_aprobados'] ?></TD>
+    <TD><?= $fila['N_notables'] ?></TD>
+    <TD><?= $fila['N_sobresalientes'] ?></TD>
+    <TD><?= $nota_media ?></TD>
+    </TR>
+
+    </TABLE>
+    <?php 
 
     mysqli_close($conexion);
     ?>

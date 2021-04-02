@@ -21,7 +21,7 @@ body {
 
 input{
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 10px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -35,8 +35,8 @@ input[type=submit]{
 }
 
 /* Tablas */
-TH {font-size: 10pt; font-weight: bold; color: white; background: #000000;; text-align: left;}
-TD {font-size: 10pt; background: #ffffff;}
+TH {font-size: 10pt; font-weight: bold; color: white; background: #000000;; text-align: left; padding: 5px 10px;}
+TD {font-size: 10pt; background: #ffffff; padding: 5px 10px;}
 TD.derecha {font-size: 10pt; text-align: right; background: #FFFFFF;}
 TD.izquierda {font-size: 10pt; text-align: left; background: #FFFFFF;}
 
@@ -44,8 +44,12 @@ TD.izquierda {font-size: 10pt; text-align: left; background: #FFFFFF;}
     color: red;
 }
 
+.acierto {
+    color: green;
+}
+
 a{
-    color: #1d1d1d;
+    color: #131313;
     text-decoration: none;
 }
 

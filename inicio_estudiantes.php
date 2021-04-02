@@ -37,7 +37,7 @@
                 <TD><?= $fila['ID_Asignatura'] ?></TD>
                 <TD><?= $fila['Nombre_Asign'] ?></TD>
                 <TD>
-                <form method=post action="asignatura.php">
+                <form method=post action="calificacion_estudiante.php">
                     <button type="submit">Acceder</button>
                     <input type="hidden" value="<?=$fila["ID_Asignatura"]?>" name="id_asig">
                     <input type="hidden" value="<?=$fila["Nombre_Asign"]?>" name="nombre_asig">
