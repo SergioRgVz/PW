@@ -58,51 +58,52 @@
                 </TR>
             <?php } ?>
             </TABLE><BR>
-        <?php }
+            <?php
 
-        print ("<b>Calificación </b>" . $calificacion . "/10");
+            print ("<b>Calificación </b>" . $calificacion . "/10");
 
-        //Actualizar número de suspensos, aprobados, notables, sobresalientes y la nota final del alumno.
-        $DNIe = $_SESSION['DNIe'];
-        $instruccion = "SELECT Nota_final, N_suspensos, N_aprobados, N_notables, N_sobresalientes FROM asignatura, matricula WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
-        $consulta = mysqli_query($conexion, $instruccion)
-            or die ("Fallo en la consulta");
-        $resultado = mysqli_fetch_array ($consulta);
+            //Actualizar número de suspensos, aprobados, notables, sobresalientes y la nota final del alumno.
+            $DNIe = $_SESSION['DNIe'];
+            $instruccion = "SELECT Nota_final, N_suspensos, N_aprobados, N_notables, N_sobresalientes FROM asignatura, matricula WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
+            $consulta = mysqli_query($conexion, $instruccion)
+                or die ("Fallo en la consulta");
+            $resultado = mysqli_fetch_array ($consulta);
 
-        if ($resultado['Nota_final'] == "")
-        {
-            if ($calificacion < 5)
+            if ($resultado['Nota_final'] == "")
             {
-                $suspensos = $resultado['N_suspensos'];
-                $suspensos++;
-                $instruccion = "UPDATE asignatura, matricula SET N_suspensos = $suspensos, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
-                $consulta = mysqli_query($conexion, $instruccion)
-                    or die ("Fallo en la modificacion");
+                if ($calificacion < 5)
+                {
+                    $suspensos = $resultado['N_suspensos'];
+                    $suspensos++;
+                    $instruccion = "UPDATE asignatura, matricula SET N_suspensos = $suspensos, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
+                    $consulta = mysqli_query($conexion, $instruccion)
+                        or die ("Fallo en la modificacion");
 
-            } else if ($calificacion < 7)
-            {
-                $aprobados = $resultado['N_aprobados'];
-                $aprobados++;
-                $instruccion = "UPDATE asignatura, matricula SET N_aprobados = $aprobados, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
-                $consulta = mysqli_query($conexion, $instruccion)
-                    or die ("Fallo en la modificacion");
+                } else if ($calificacion < 7)
+                {
+                    $aprobados = $resultado['N_aprobados'];
+                    $aprobados++;
+                    $instruccion = "UPDATE asignatura, matricula SET N_aprobados = $aprobados, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
+                    $consulta = mysqli_query($conexion, $instruccion)
+                        or die ("Fallo en la modificacion");
 
-            } else if ($calificacion < 9)
-            {
-                $notables = $resultado['N_notables'];
-                $notables++;
-                $instruccion = "UPDATE asignatura, matricula SET N_notables = $notables, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
-                $consulta = mysqli_query($conexion, $instruccion)
-                    or die ("Fallo en la modificacion");
+                } else if ($calificacion < 9)
+                {
+                    $notables = $resultado['N_notables'];
+                    $notables++;
+                    $instruccion = "UPDATE asignatura, matricula SET N_notables = $notables, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
+                    $consulta = mysqli_query($conexion, $instruccion)
+                        or die ("Fallo en la modificacion");
 
-            } else
-            {
-                $sobresalientes = $resultado['N_sobresalientes'];
-                $sobresalientes++;
-                $instruccion = "UPDATE asignatura, matricula SET N_sobresalientes = $sobresalientes, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
-                $consulta = mysqli_query($conexion, $instruccion)
-                    or die ("Fallo en la modificacion");
+                } else
+                {
+                    $sobresalientes = $resultado['N_sobresalientes'];
+                    $sobresalientes++;
+                    $instruccion = "UPDATE asignatura, matricula SET N_sobresalientes = $sobresalientes, Nota_final = $calificacion WHERE asignatura.ID_Asignatura = $id_asignatura AND matricula.DNIe = '$DNIe' AND matricula.ID_Asignatura = $id_asignatura";
+                    $consulta = mysqli_query($conexion, $instruccion)
+                        or die ("Fallo en la modificacion");
 
+                }
             }
         }
 
