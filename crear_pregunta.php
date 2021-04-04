@@ -14,16 +14,15 @@ $insertar = $_POST['insertar'];
 $enunciado = $_POST['enun'];
 $tema = $_POST['tema'];
 $r_correcta = $_POST['r_correcta'];
-$nPregunta = $_POST["nfilas"]+1;
 
 if(isset($insertar))
 {
     $conexion = mysqli_connect("localhost", "root", "", "examenes_online")
         or die("No se ha podido conectar con la base de datos");
 
-    $instruccion = "insert into pregunta (N_Pregunta, Enunciado, R_Correcta, ID_Tema) values ('$nPregunta','$enunciado','$r_correcta','$tema')";
+    $instruccion = "insert into pregunta (Enunciado, R_Correcta, ID_Tema) values ('$enunciado','$r_correcta','$tema')";
     $consulta = mysqli_query($conexion, $instruccion)
-        or die("Fallo en la consulta");
+        or die("Fallo en la consulta crear");
 
     mysqli_close($conexion);
     header('Location: preguntas.php?agregada');
@@ -33,14 +32,14 @@ if(isset($insertar))
 ?>
 
 <body style="padding:15px 15px 15px 15px">
-    <h2>Crear pregunta</h2>
+    <h2 style=color:white>Crear pregunta</h2>
 <form method="post" action="crear_pregunta.php">
     Enunciado:
     <br>
-    <textarea style="width:400px "name="enun" maxlength=400></textarea>
+    <textarea style="width:400px "name="enun" placeholder="Introduzca un enunciado" maxlength=400></textarea>
     <br>
     Tema:
-    <input type="number" name="tema" min="1" maxlength=2>
+    <input type="number" name="tema" min="1" placeholder="Numero de Tema"maxlength=2>
     <br>
     Selecciona la respuesta correcta:
     <br/>
