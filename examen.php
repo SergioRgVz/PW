@@ -35,6 +35,22 @@
     $consulta = mysqli_query($conexion, $instruccion);
     $date = mysqli_fetch_array($consulta);
 
+    $instruccion = "SELECT Hecho from respuesta_examen WHERE DNIe_Alumno = '$dni'";
+    $consulta = mysqli_query($conexion, $instruccion);
+    $hecho = mysqli_fetch_array($consulta);
+
+    if($hecho['Hecho'] == 1)
+    {
+        ?>
+        Aqui puedes consultar tus calificaciones
+        
+        <a href="calificacion_estudiante.php">Ver calificaciones</a>
+        <?php
+    }
+
+
+    else{
+    
     if($fecha_actual == $date['fecha'])
     {
         $instruccion = "SELECT * FROM pregunta WHERE ID_Tema IN (SELECT N_Tema FROM Tema WHERE ID_Asignatura =$id_asignatura) ORDER BY RAND() LIMIT 10";
@@ -49,15 +65,12 @@
         <form method = post action = examen_resuelto.php>
             <?php 
             $num_ejercicio = 1;
-            var_dump($fila);
             for($i=0; $i < 10; $i++)
             {
               
                 ?>
-                Voy a imprimir la pregunta numero <?=$num_ejercicio?>
                 <br>
                 <br>
-                <!-- <?=var_dump($fila);?> -->
 
                 
                 <br>
@@ -84,6 +97,16 @@
         }
 
     }
+    else
+    {
+        ?> 
+
+        <h2>Vuelve el día del examen</h2>
+        <a href="inicio_estudiantes.php">Volver al inicio</a>
+<?php   
+    }
+}
+// }
 ?>
 </body>
 
