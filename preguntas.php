@@ -42,7 +42,9 @@ error_reporting(E_ALL & ~E_NOTICE);
     {
         $fecha_ex= $_POST['fecha_examen'];
 
-        $instruccion = "select E.ID_Examen, A.ID_Asignatura, T.N_Tema from tema T, pregunta P, asignatura A, examen E where P.ID_Tema=T.N_Tema AND P.ID_Tema=E.ID_Tema AND A.ID_Asignatura=T.ID_Asignatura";
+        //var_dump($fecha_ex);
+        $id_a = 21714063;
+        $instruccion = "SELECT ID_Examen FROM examen WHERE ID_Asignatura = $id_a";
         $consulta = mysqli_query($conexion,$instruccion)
             or die("Fallo en la consulta fecha");
         $resultado = mysqli_fetch_array($consulta);
@@ -50,7 +52,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 
         if($resultado[0] == null)
         {
-            $id_a = 21714016;
             $instruccion = "insert into examen (fecha, ID_Asignatura) values ('$fecha_ex', $id_a)";
             $consulta = mysqli_query($conexion, $instruccion)
                 or die("Fallo en la consulta f1");
