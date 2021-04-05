@@ -73,7 +73,7 @@ error_reporting(E_ALL & ~E_NOTICE);
     $nfilas = mysqli_num_rows($consulta);
     if($nfilas > 0)
     {
-        print("<method='post' form action='preguntas.php'>\n");
+        print("<form method='post' action='preguntas.php'>\n");
         print("<TABLE>\n");
         print("<TR>\n");
         print("<TH>Nº Pregunta</TH>\n");
