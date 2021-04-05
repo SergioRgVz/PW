@@ -46,16 +46,22 @@ error_reporting(E_ALL & ~E_NOTICE);
         $consulta = mysqli_query($conexion,$instruccion)
             or die("Fallo en la consulta fecha");
         $resultado = mysqli_fetch_array($consulta);
-        
         var_dump($resultado);
 
         if($resultado[0] == null)
         {
-            $instruccion = "insert into examen (fecha, ID_Tema, ID_Asignatura) values ('$fecha_ex', '$resultado['N_Tema']', '$resultado['ID_Asignatura']')";
+            $id_a = 21714016;
+            $instruccion = "insert into examen (fecha, ID_Asignatura) values ('$fecha_ex', $id_a)";
+            $consulta = mysqli_query($conexion, $instruccion)
+                or die("Fallo en la consulta f1");
+
         }
         else
         {
-            $instruccion = "update examen set fecha='$fecha_ex' where ID_Examen=$resultado['ID_Examen']";
+            $id_e = $resultado['ID_Examen'];
+            $instruccion = "update examen set fecha='$fecha_ex' where ID_Examen=$id_e";
+            $consulta = mysqli_query($conexion, $instruccion)
+                or die("Fallo en la consulta f2");
         }
     }
 
