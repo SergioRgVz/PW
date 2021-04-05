@@ -23,7 +23,6 @@ if(isset($_POST['insertar'])){
     $id = $_POST['id'];
 
     $instruccion = "update pregunta set Enunciado='$enunciado', R_Correcta=$r_correcta, ID_Tema=$tema where N_Pregunta=$id";
-    var_dump($instruccion);
 
     $consulta = mysqli_query($conexion, $instruccion)
         or die("Fallo en la consulta actualizar");
@@ -47,10 +46,10 @@ $r_correcta = $resultado['R_Correcta'];
 <form method="post" action="editar_pregunta.php">
     Enunciado:
     <br>
-    <textarea style="width:400px "name="enun" maxlength=400 placeholder="<?=$enunciado?>"></textarea>
+    <textarea style="width:400px "name="enun" maxlength=400><?=$enunciado?></textarea>
     <br>
     Tema:
-    <input type="number" name="tema" min="1" placeholder="<?=$tema?>" maxlength=2>
+    <input type="number" name="tema" min="1" value="<?=$tema?>" maxlength=2>
     <br>
     Selecciona la respuesta correcta:
     <br/>
