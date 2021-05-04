@@ -13,6 +13,12 @@
     </header>
     <?php
         session_start();
+        if (!isset($_SESSION["DNIe"]))
+            header("location:index.php");
+
+        if ($_SESSION["Rol"] == 1)
+            header("location:inicio_profesores.php");
+
         $conexion = mysqli_connect("localhost", "root", "", "examenes_online");
         $dni = $_SESSION["DNIe"];
         $instruccion = "SELECT * FROM asignatura WHERE ID_Asignatura IN (SELECT ID_Asignatura FROM matricula WHERE DNIe='$dni')";
@@ -37,7 +43,7 @@
                 <TD><?= $fila['ID_Asignatura'] ?></TD>
                 <TD><?= $fila['Nombre_Asign'] ?></TD>
                 <TD>
-                <form method=post action="calificacion_estudiante.php">
+                <form method=post action="asignatura_estudiantes.php">
                     <button type="submit">Acceder</button>
                     <input type="hidden" value="<?=$fila["ID_Asignatura"]?>" name="id_asig">
                     <input type="hidden" value="<?=$fila["Nombre_Asign"]?>" name="nombre_asig">

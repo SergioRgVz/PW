@@ -13,6 +13,12 @@
     </header>
     <?php
     session_start();
+    if (!isset($_SESSION["DNIe"]))
+        header("location:index.php");
+
+    if ($_SESSION["Rol"] == 0)
+        header("location:inicio_estudiantes.php");
+
     $asignatura = $_SESSION["id_asig"];
     $conexion = mysqli_connect("localhost", "root", "", "examenes_online");
     $instruccion = "select usuario.DNIe, usuario.Nombre_Usuario, usuario.Apellido_Usuario, matricula.Nota_final from usuario, matricula where usuario.DNIe=matricula.DNIe and matricula.ID_Asignatura='$asignatura'";
@@ -49,27 +55,22 @@
 
     $nota_media = $fila['Nota_media'];
 
-    //Calcular la nota media si no está ya almacenada
-    if($nota_media == "")
+    //Calcular la nota media
+    $suma = 0;
+    $instruccion = "select Nota_final from matricula where ID_Asignatura='$asignatura'";
+    $consulta = mysqli_query($conexion, $instruccion);
+    $nfilas = mysqli_num_rows($consulta);
+
+    for ($i=0; $i<$nfilas; $i++)
     {
-        $num_alumnos = $fila['N_suspensos'] + $fila['N_aprobados'] + $fila['N_notables'] + $fila['N_sobresalientes'];
-
-        $suma = 0;
-        $instruccion = "select Nota_final from matricula where ID_Asignatura='$asignatura'";
-        $consulta = mysqli_query($conexion, $instruccion);
-        $nfilas = mysqli_num_rows($consulta);
-
-        for ($i=0; $i<$nfilas; $i++)
-        {
-            $nota = mysqli_fetch_array($consulta);
-            $suma += $nota['Nota_final'];
-        }
-
-        $nota_media =  $suma / $num_alumnos;
-        $instruccion = "UPDATE asignatura SET Nota_media = $nota_media WHERE asignatura.ID_Asignatura = $asignatura";
-        $consulta = mysqli_query($conexion, $instruccion)
-            or die ("Fallo en la modificacion");
+        $nota = mysqli_fetch_array($consulta);
+        $suma += $nota['Nota_final'];
     }
+
+    $nota_media =  $suma / $nfilas;
+    $instruccion = "UPDATE asignatura SET Nota_media = $nota_media WHERE asignatura.ID_Asignatura = $asignatura";
+    $consulta = mysqli_query($conexion, $instruccion)
+        or die ("Fallo en la modificacion");
 
     ?>
     <BR><TABLE>

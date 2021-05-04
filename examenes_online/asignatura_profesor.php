@@ -11,18 +11,24 @@
     <header>
         <h2>
             <?php
+                session_start();
+                if (!isset($_SESSION["DNIe"]))
+                    header("location:index.php");
+        
+                if ($_SESSION["Rol"] == 0)
+                    header("location:inicio_estudiantes.php");
+
                 echo $_POST["nombre_asig"];
             ?>
         </h2>
     </header>
 
     <?php
-        session_start();
         $_SESSION["id_asig"] = $_POST["id_asig"];
-        $_SESSION["nombre_asig"] = $_POST["nombre_asig"];
     ?>
 
-    <p><a>Examen</a></p>
+    <p><a href='preguntas.php'>Banco de preguntas para el examen</a></p>
+    <p><a href='resultados.php'>Resultados del examen</a></p>
 
 </body>
 

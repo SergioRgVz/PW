@@ -19,7 +19,7 @@ body {
     background-color: #ececec;
 }
 
-input{
+div input{
     width: 100%;
     padding: 12px 10px;
     margin: 8px 0;
@@ -29,7 +29,7 @@ input{
     box-sizing: border-box;
 }
 
-input[type=submit]{
+div input[type=submit]{
     width: auto;
     background-color: white;
 }

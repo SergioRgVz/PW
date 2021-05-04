@@ -16,7 +16,6 @@
     
     if (isset($aceptar))
     {
-        session_start();
         $usuario = $_POST['usuario'];
         $clave = $_POST['clave'];
 
@@ -26,10 +25,12 @@
 
         $fila = mysqli_fetch_array($consulta);
 
-        $_SESSION["DNIe"] = $fila["DNIe"];
-
         if ($fila != null)
         {
+            session_start();
+            $_SESSION["DNIe"] = $fila["DNIe"];
+            $_SESSION["Rol"] = $fila["Rol"];
+
             if ($fila["Rol"] == 0)
                 header("location:inicio_estudiantes.php");
             else

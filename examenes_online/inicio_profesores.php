@@ -13,6 +13,12 @@
     </header>
     <?php
         session_start();
+        if (!isset($_SESSION["DNIe"]))
+            header("location:index.php");
+
+        if ($_SESSION["Rol"] == 0)
+            header("location:inicio_estudiantes.php");
+
         $conexion = mysqli_connect("localhost", "root", "", "examenes_online");
         $dni = $_SESSION["DNIe"];
         $instruccion = "SELECT * FROM asignatura WHERE DNIe_Coordinador='$dni'";
