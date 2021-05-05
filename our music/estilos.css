@@ -47,5 +47,6 @@ footer{
 .cuerpo{
     position: absolute;
     top: 65px;
+    bottom: 65px;
     left: 17px;
 }
