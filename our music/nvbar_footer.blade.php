@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="css/estilos.css" rel="stylesheet" type="text/css">
-    @yield('titulo')
+    <title>@yield('titulo')</title>
 </head>
 
 <body>
@@ -16,8 +16,9 @@
             <li style="float:right"><a href="">Perfil</a></li>
         </ul>
     </nav>
-
-    @yield('contenido')
+    <div class="cuerpo">
+        @yield('contenido')
+    </div>
 
     <footer>
         <p>OUR MUSIC</p>
