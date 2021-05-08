@@ -20,10 +20,10 @@
         @yield('contenido')
     </div>
 
-    <footer>
+    <!-- <footer>
         <p>OUR MUSIC</p>
         <p>&copy 2021</p>
-    </footer>
+    </footer> -->
 
 </body>
 
