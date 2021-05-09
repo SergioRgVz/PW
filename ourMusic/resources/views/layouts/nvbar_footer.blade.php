@@ -19,7 +19,7 @@
     </nav>
     <div class="cuerpo">
         @if (Auth::check())
-            <p>Se ha iniciado sesión como <span class="usuario">{{ $usuario->name }}<span></p>
+            <p>Se ha iniciado sesión como <span class="color">{{ $usuario->name }}<span></p>
         @endif
         @yield('contenido')
     </div>
