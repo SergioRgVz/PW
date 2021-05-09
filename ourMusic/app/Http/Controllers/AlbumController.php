@@ -9,7 +9,9 @@ use App\Models\Album;
 class AlbumController extends Controller
 {
     public function crear_album (){
-        return view('albumes.nuevo_album');
+        $user = Auth::user();
+
+        return view('albumes.nuevo_album', ['usuario' => $user]);
     }
 
     public function guardar_album (Request $request){

@@ -82,7 +82,18 @@ button{
     margin-right: 25px;
 }
 
-.usuario{
-    text-decoration: underline;
+.color{
     color: rgb(27, 174, 219);
+}
+
+h3{
+    color: rgb(27, 174, 219);
+}
+
+.texto{
+    width: 80%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    white-space: initial;
 }
