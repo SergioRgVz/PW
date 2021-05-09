@@ -34,7 +34,7 @@
             @method('DELETE')
             <div class="alinear">
                 <div>
-                    <p><img src='img/{{$review->imagen}}' width="200" height="200" alt=''></p>
+                    <p><img class="imagen" src='img/{{$review->imagen}}' width="200" height="200" alt=''></p>
                 </div>
                 <div>
                     <h3><a href="">{{ $review->nombre }}</a></h3>
@@ -67,7 +67,7 @@
 
             <div class="alinear">
                 <div>
-                    <p><img src='img/{{$album->imagen}}' width="200" height="200" alt=''></p>
+                    <p><img class="imagen" src='img/{{$album->imagen}}' width="200" height="200" alt=''></p>
                 </div>
                 <div>
                     <h3><a href="">{{ $album->nombre }}</a></h3>

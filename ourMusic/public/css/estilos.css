@@ -78,6 +78,11 @@ button{
     flex-direction: row;
 }
 
-img{
+.imagen{
     margin-right: 25px;
+}
+
+.usuario{
+    text-decoration: underline;
+    color: rgb(27, 174, 219);
 }
