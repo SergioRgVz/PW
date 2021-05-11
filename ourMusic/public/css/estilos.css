@@ -34,22 +34,12 @@ nav li a:hover {
     background-color: #111;
 }
 
-footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
 .cuerpo{
     position: absolute;
     top: 65px;
     bottom: 65px;
     left: 17px;
+    right: 17px;
 }
 
 input{
@@ -69,31 +59,51 @@ a{
     text-decoration: none;
 }
 
-button{
-    cursor: pointer;
-}
-
 .alinear{
     display: flex;
     flex-direction: row;
 }
 
-.imagen{
+.margen{
     margin-right: 25px;
 }
 
 .color{
-    color: rgb(27, 174, 219);
+    color: #3b83bd;
 }
 
-h3{
-    color: rgb(27, 174, 219);
+.busqueda{
+    margin-left: 45px; 
+    padding-top: 8px;
 }
 
-.texto{
+.sombreado {
+    padding: 10px;
+    background-color: rgb(46, 46, 46);
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: auto;
     width: 80%;
+    grid-column-gap: 50px;
+}
 
-    white-space: nowrap;
-    overflow: hidden;
-    white-space: initial;
+button {
+    transition-duration: 0.4s;
+    border: none;
+    color: #3b83bd;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3b83bd;
+    color: white;
 }

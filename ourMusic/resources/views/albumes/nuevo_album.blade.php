@@ -1,5 +1,5 @@
-@extends('layouts.nvbar_footer')
-@section('titulo') Crear álbum @endsection
+@extends('layouts.nvbar')
+@section('titulo') ourMusic - Crear álbum @endsection
 
 @section('contenido')
     <header>

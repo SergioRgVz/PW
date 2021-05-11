@@ -16,7 +16,7 @@ class UserController extends Controller
             $id = Auth::id();
             $reviews = Review::join('album', 'album.id', '=', 'review.album')
                                 ->select('review.id', 'album.imagen', 'album.nombre', 'album.artista', 'album.lanzamiento',
-                                 'album.puntuacion', 'album.genero', 'review.review')
+                                 'album.puntuacion', 'album.genero', 'review.review', 'review.valoracion')
                                 ->where('review.usuario', $id)->simplePaginate(2);
             $albumes = Album::where('usuario', $id)->get();
 
@@ -39,12 +39,11 @@ class UserController extends Controller
             'email' => 'required|email',
             'edad' => 'required|integer',
             'localizacion' => 'required|string',
-            'favoritos' => 'required|string',
-            'biografia' => 'required|string',
         ]);
 
         $user = Auth::user();
         $user->name = $request['nombre'];
+        $user->email = $request['email'];
         $user->edad = $request['edad'];
         $user->localizacion = $request['localizacion'];
         $user->favoritos = $request['favoritos'];

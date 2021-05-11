@@ -18,6 +18,7 @@ class CreateReviewTable extends Migration
             $table->foreignId('usuario')->references('id')->on('users')->onDelete("cascade");
             $table->foreignId('album')->references('id')->on('album')->onDelete("cascade");
             $table->string('review')->nullable(false);
+            $table->integer('valoracion')->nullable(false);
             $table->timestamps();
         });
     }

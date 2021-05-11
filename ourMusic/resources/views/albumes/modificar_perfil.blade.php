@@ -1,5 +1,5 @@
-@extends('layouts.nvbar_footer')
-@section('titulo') Modificar perfil: {{ $usuario->name }} @endsection
+@extends('layouts.nvbar')
+@section('titulo') ourMusic - Modificar perfil: {{ $usuario->name }} @endsection
 
 @section('contenido')
     <header>
