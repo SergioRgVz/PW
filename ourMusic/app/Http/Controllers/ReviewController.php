@@ -12,6 +12,16 @@ class ReviewController extends Controller
     public function eliminar ($id){
 
         $review = Review::find($id);
+
+        $album_id = $review->album;
+
+        $album = Album::find($album_id);
+        $n_rev = Review::where('album', $album_id)->count();
+        $suma = Review::where('album', $album_id)->sum('valoracion');
+        $rate = ($suma-$review->valoracion)/($n_rev-1);
+        $album->puntuacion = $rate;
+        $album->save();
+
         $review->delete();
 
         $user = Auth::user();

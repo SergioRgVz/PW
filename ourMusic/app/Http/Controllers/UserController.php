@@ -17,8 +17,8 @@ class UserController extends Controller
             $reviews = Review::join('album', 'album.id', '=', 'review.album')
                                 ->select('review.id', 'album.imagen', 'album.nombre', 'album.artista', 'album.lanzamiento',
                                  'album.puntuacion', 'album.genero', 'review.review', 'review.valoracion')
-                                ->where('review.usuario', $id)->simplePaginate(2);
-            $albumes = Album::where('usuario', $id)->get();
+                                ->where('review.usuario', $id)->orderBy('id','desc')->simplePaginate(2);
+            $albumes = Album::where('usuario', $id)->orderBy('id','desc')->get();
 
             return view('albumes.perfil')->with(['usuario' => $user, 'reviews' => $reviews, 'albumes' => $albumes]);
         } else 
